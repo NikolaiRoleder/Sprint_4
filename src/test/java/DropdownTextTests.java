@@ -1,17 +1,17 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import page_object.MainPage;
+import pageobject.MainPage;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class AccordionTests extends BaseTest {
+public class DropdownTextTests extends BaseTest {
 
     private final int panelIndex;
     private final String expectedText;
 
-    public AccordionTests(int panelIndex, String expectedText) {
+    public DropdownTextTests(int panelIndex, String expectedText) {
         this.panelIndex = panelIndex;
         this.expectedText = expectedText;
     }
@@ -32,7 +32,7 @@ public class AccordionTests extends BaseTest {
     }
 
     @Test
-    public void checkAccordionText() {
+    public void checkTextInDropdownPanel() {
         // создать объект класса главной страницы
         MainPage objMainPage = new MainPage(driver);
         //получение текста с панели

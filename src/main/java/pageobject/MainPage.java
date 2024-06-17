@@ -1,4 +1,4 @@
-package page_object;
+package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,22 +16,22 @@ public class MainPage extends BasePage {
     private final By orderButtonTop = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()='Заказать']");
     // локатор кнопки Заказать в центре страницы
     private final By orderButtonMiddle = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button");
-    //локатор заголовка панели аккордеона
-    private final String accordionHeading = "accordion__heading-%d";
+    //локатор пункта с вопросом
+    private final String questionPoint = "accordion__heading-%d";
     //локатор панели аккордеона
-    private final String accordionPanel = "accordion__panel-%d";
+    private final String answerInDropdownPanel = "accordion__panel-%d";
 
     public String getPanelText(int panelIndex) {
         //ожидание загрузки в течение 5 сек
-        waitForVisibilityOfElement(driver,By.id("rcc-confirm-button"),5);
+        waitForVisibilityOfElement(driver,confirmButton,5);
         //согласиться с использованием кук, так как панель закрывает аккордеон
-        clickConfirmButton();
+        clickCookieConfirmButton();
         // Открываем вопрос, чтобы увидеть ответ
-        driver.findElement(By.id(String.format(accordionHeading,panelIndex))).click();
+        driver.findElement(By.id(String.format(questionPoint,panelIndex))).click();
         //ожидаем отображения текста в панели аккордеона
-        waitForVisibilityOfElement(driver,By.id(String.format(accordionPanel,panelIndex)),5);
+        waitForVisibilityOfElement(driver,By.id(String.format(answerInDropdownPanel,panelIndex)),5);
         // Получаем текст ответа, который является следующим элементом после вопроса
-        return driver.findElement(By.id(String.format(accordionPanel,panelIndex))).getText();
+        return driver.findElement(By.id(String.format(answerInDropdownPanel,panelIndex))).getText();
     }
 
     public void clickTopOrderButton() {
@@ -40,7 +40,7 @@ public class MainPage extends BasePage {
     public void clickMiddleOrderButton() {
         driver.findElement(orderButtonMiddle).click();
     }
-    public void clickConfirmButton(){
+    public void clickCookieConfirmButton(){
         driver.findElement(confirmButton).click();
     }
 }

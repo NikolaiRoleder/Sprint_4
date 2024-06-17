@@ -1,4 +1,4 @@
-package page_object;
+package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -62,7 +62,7 @@ public class OrderPage extends BasePage {
 
     //заполнение первого шага формы
     public void setFirstStep(String firstName, String lastName, String address, String station, String phone) {
-        waitForVisibilityOfElement(driver, By.xpath(".//input[contains(@placeholder, 'Имя')]"), 5);
+        waitForVisibilityOfElement(driver, this.firstName, 5);
         setValue(this.firstName, firstName);
         setValue(this.lastName, lastName);
         setValue(this.address, address);
@@ -74,20 +74,20 @@ public class OrderPage extends BasePage {
 
     //заполнение второго шага формы
     public void setSecondStep(String date, String rentalPeriod, String comment) {
-        waitForVisibilityOfElement(driver, By.xpath(".//div[starts-with(@class, 'react-datepicker__input-container')]//input"), 5);
+        waitForVisibilityOfElement(driver, this.date, 5);
         setValue(this.date, date);
         clickElement(dateSelected);
         clickElement(this.rentalPeriod);
         chooseElementFromDropdown(rentalPeriodList, rentalPeriod);
         setValue(this.comment, comment);
         clickElement(orderButton);
-        waitForVisibilityOfElement(driver, By.xpath(".//button[text()='Да']"), 5);
+        waitForVisibilityOfElement(driver, orderConfirmButton, 5);
         clickElement(orderConfirmButton);
     }
 
-    //заполнение второго шага формы
+    //заполнение второго шага формы c выбором цвета самоката
     public void setSecondStepWithChoosingColor(String date, String rentalPeriod, String comment) {
-        waitForVisibilityOfElement(driver, By.xpath(".//div[starts-with(@class, 'react-datepicker__input-container')]//input"), 5);
+        waitForVisibilityOfElement(driver, this.date, 5);
         setValue(this.date, date);
         clickElement(dateSelected);
         clickElement(this.rentalPeriod);
@@ -95,7 +95,7 @@ public class OrderPage extends BasePage {
         clickElement(blackColorCheckbox);
         setValue(this.comment, comment);
         clickElement(orderButton);
-        waitForVisibilityOfElement(driver, By.xpath(".//button[text()='Да']"), 5);
+        waitForVisibilityOfElement(driver, orderConfirmButton, 5);
         clickElement(orderConfirmButton);
     }
 
